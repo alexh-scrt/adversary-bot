@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "adversary_bot"
+version = "0.1.0"
+description = "A hostile, adversarial code reviewer for pull requests powered by LLMs"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "adversary_bot contributors" }
+]
+keywords = ["security", "code-review", "llm", "github", "adversarial"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "click>=8.1",
+    "openai>=1.0",
+    "anthropic>=0.20",
+    "PyGithub>=2.1",
+    "python-dotenv>=1.0",
+    "unidiff>=0.7",
+]
+
+[project.scripts]
+adversary-bot = "adversary_bot.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/example/adversary_bot"
+Issues = "https://github.com/example/adversary_bot/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["adversary_bot*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
